@@ -115,6 +115,8 @@
     .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
     .btn-ghost:hover { border-color: var(--accent); }
     .btn-sm { padding: 8px 14px; font-size: 14px; border-radius: 10px; }
+    .nav-cta { display: none; }
+    @media (min-width: 520px) { .nav-cta { display: inline-flex; } }
 
     /* Hero */
     .hero { padding: 72px 0 56px; position: relative; overflow: hidden; }
@@ -254,7 +256,7 @@
           <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <a class="btn btn-primary btn-sm" href="mailto:rikiafilaf.work@gmail.com">Hire Me</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="mailto:rikiafilaf.work@gmail.com">Let's Work Together</a>
       </div>
     </div>
   </header>
