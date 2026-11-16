@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riki Afila Firmansyah — Fullstack Developer</title>
+  <meta name="description" content="Riki Afila Firmansyah, Fullstack Developer based in Bandung, Indonesia. Building web applications end-to-end with Vue/Nuxt, React/Next.js, NestJS, and Laravel.">
+  <meta name="theme-color" content="#0b1020">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Riki Afila Firmansyah — Fullstack Developer">
+  <meta property="og:description" content="Building web applications end-to-end with Vue/Nuxt, React/Next.js, NestJS, and Laravel.">
+  <meta property="og:url" content="https://rikiafilafwork.github.io/">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236366f1'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='700' font-size='30' fill='white'%3ERA%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --surface: #ffffff;
+      --surface-2: #eef0f7;
+      --text: #0f172a;
+      --muted: #55607a;
+      --border: #e2e5ef;
+      --accent: #4f46e5;
+      --accent-2: #0891b2;
+      --accent-soft: rgba(79, 70, 229, 0.1);
+      --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+      --radius: 16px;
+      --maxw: 1080px;
+    }
+    :root[data-theme="dark"] {
+      --bg: #0b1020;
+      --surface: #121933;
+      --surface-2: #1a2244;
+      --text: #e6e9f5;
+      --muted: #9aa3c0;
+      --border: #242d52;
+      --accent: #818cf8;
+      --accent-2: #22d3ee;
+      --accent-soft: rgba(129, 140, 248, 0.14);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0b1020;
+        --surface: #121933;
+        --surface-2: #1a2244;
+        --text: #e6e9f5;
+        --muted: #9aa3c0;
+        --border: #242d52;
+        --accent: #818cf8;
+        --accent-2: #22d3ee;
+        --accent-soft: rgba(129, 140, 248, 0.14);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    /* Nav */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(160%) blur(12px);
+      -webkit-backdrop-filter: saturate(160%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
+    .brand { font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+    .brand-mark {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700;
+    }
+    .nav-links { display: none; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    @media (min-width: 760px) { .nav-links { display: flex; } }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .icon-btn {
+      width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text); display: grid; place-items: center; cursor: pointer;
+    }
+    .icon-btn:hover { border-color: var(--accent); }
+    .icon-btn svg { width: 18px; height: 18px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px;
+      border: 1px solid transparent; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 20px -6px var(--accent); }
+    :root[data-theme="dark"] .btn-primary { color: #0b1020; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #0b1020; } }
+    .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--accent); }
+    .btn-sm { padding: 8px 14px; font-size: 14px; border-radius: 10px; }
+
+    /* Hero */
+    .hero { padding: 72px 0 56px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -10% auto auto; width: 620px; height: 620px;
+      background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--muted);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
+    h1.hero-title {
+      font-size: clamp(36px, 7vw, 64px); line-height: 1.05; letter-spacing: -0.035em;
+      margin: 20px 0 16px; font-weight: 800;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-sub { font-size: clamp(16px, 2.2vw, 19px); color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 32px; color: var(--muted); font-size: 14px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta svg { width: 16px; height: 16px; }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    .section-label {
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--accent);
+      letter-spacing: .04em; margin: 0 0 8px;
+    }
+    h2 { font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.025em; margin: 0 0 24px; line-height: 1.2; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 24px;
+    }
+
+    /* About */
+    .about-grid { display: grid; gap: 20px; }
+    @media (min-width: 860px) { .about-grid { grid-template-columns: 1.4fr 1fr; } }
+    .about-grid p { margin: 0 0 14px; color: var(--muted); font-size: 16px; }
+    .about-grid p strong { color: var(--text); }
+    .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+    .facts li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+    .facts .ic {
+      flex: none; width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent);
+      display: grid; place-items: center;
+    }
+    .facts .ic svg { width: 18px; height: 18px; }
+    .facts small { display: block; color: var(--muted); font-size: 13px; }
+
+    /* What I do */
+    .services { display: grid; gap: 16px; }
+    @media (min-width: 720px) { .services { grid-template-columns: repeat(3, 1fr); } }
+    .service h3 { margin: 14px 0 6px; font-size: 18px; letter-spacing: -0.01em; }
+    .service p { margin: 0; color: var(--muted); font-size: 15px; }
+    .service .ic {
+      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .service .ic svg { width: 22px; height: 22px; }
+
+    /* Stack */
+    .stack-groups { display: grid; gap: 16px; }
+    @media (min-width: 720px) { .stack-groups { grid-template-columns: repeat(2, 1fr); } }
+    .stack-groups h3 { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 600; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 500;
+      background: var(--surface-2); border: 1px solid var(--border);
+    }
+
+    /* Projects */
+    .projects { display: grid; gap: 16px; }
+    @media (min-width: 720px) { .projects { grid-template-columns: repeat(3, 1fr); } }
+    .project { display: flex; flex-direction: column; transition: transform .15s ease, border-color .15s ease; }
+    .project:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .project-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); }
+    .project-top svg { width: 22px; height: 22px; }
+    .project h3 { margin: 16px 0 6px; font-size: 18px; }
+    .project p { margin: 0 0 18px; color: var(--muted); font-size: 15px; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; padding: 3px 8px; border-radius: 6px;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .note {
+      margin-top: 16px; padding: 16px 20px; border-radius: 12px; border: 1px dashed var(--border);
+      color: var(--muted); font-size: 15px; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .note svg { flex: none; width: 20px; height: 20px; margin-top: 2px; color: var(--accent); }
+
+    /* Contact */
+    .contact {
+      text-align: center; padding: 48px 24px;
+      background:
+        radial-gradient(circle at 20% 0%, var(--accent-soft), transparent 50%),
+        radial-gradient(circle at 80% 100%, var(--accent-soft), transparent 50%),
+        var(--surface);
+    }
+    .contact h2 { margin-bottom: 12px; }
+    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 28px; }
+    .contact .hero-cta { justify-content: center; }
+
+    footer { padding: 32px 0 40px; color: var(--muted); font-size: 14px; }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--border); padding-top: 24px; }
+    .socials { display: flex; gap: 16px; }
+    .socials a:hover { color: var(--text); }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn, .project { transition: none; }
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Back to top"><span class="brand-mark">RA</span>Riki Afila</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#services">What I Do</a>
+        <a href="#stack">Stack</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm" href="mailto:rikiafilaf.work@gmail.com">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <span class="badge"><span class="dot"></span>Open to new opportunities</span>
+        <h1 class="hero-title">Hi, I'm Riki Afila Firmansyah.<br><span class="gradient-text">Fullstack Developer.</span></h1>
+        <p class="hero-sub">I build web applications end-to-end, from database design and REST APIs to responsive, production-ready interfaces, with Vue/Nuxt, React/Next.js, NestJS, and Laravel.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="mailto:rikiafilaf.work@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Get in touch
+          </a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/riki-afila-f-7068631a9" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/rikiafilafwork" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+            GitHub
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bandung, Indonesia (UTC+7)</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Fullstack Developer at WZ Technology</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <p class="section-label">// about</p>
+        <h2>About me</h2>
+        <div class="about-grid">
+          <div class="card reveal">
+            <p>I'm a <strong>Fullstack Developer</strong> from Bandung, Indonesia, currently working at <strong>WZ Technology</strong>. I like owning a feature from start to finish: modelling the data, designing the API, and shipping an interface that feels fast and simple to use.</p>
+            <p>Day to day I work mostly with <strong>TypeScript</strong>, <strong>Vue/Nuxt</strong>, <strong>NestJS</strong>, and <strong>Laravel</strong>, backed by relational databases like PostgreSQL and MySQL.</p>
+            <p style="margin-bottom:0">Right now I'm sharpening my skills in scalable backend architecture, testing, and clean code practices.</p>
+          </div>
+          <div class="card reveal">
+            <ul class="facts">
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+                <span>WZ Technology<small>Fullstack Developer</small></span>
+              </li>
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <span>Bandung, Indonesia<small>UTC+7, open to remote collaboration</small></span>
+              </li>
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>
+                <span>Available for work<small>Fullstack, frontend, or backend roles &amp; freelance</small></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What I do -->
+    <section id="services">
+      <div class="container">
+        <p class="section-label">// what i do</p>
+        <h2>What I can help with</h2>
+        <div class="services">
+          <div class="card service reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+            <h3>Frontend</h3>
+            <p>Responsive, accessible interfaces with Vue/Nuxt or React/Next.js and Tailwind CSS: dashboards, landing pages, and complex forms.</p>
+          </div>
+          <div class="card service reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg></span>
+            <h3>Backend &amp; APIs</h3>
+            <p>REST APIs and business logic with NestJS, Express, or Laravel, including authentication and role-based access control.</p>
+          </div>
+          <div class="card service reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg></span>
+            <h3>Data &amp; Performance</h3>
+            <p>Schema design and queries for PostgreSQL, MySQL, and MongoDB, with Redis caching where speed matters.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section id="stack">
+      <div class="container">
+        <p class="section-label">// tech stack</p>
+        <h2>Tools I work with</h2>
+        <div class="stack-groups">
+          <div class="card reveal">
+            <h3>Languages</h3>
+            <div class="chips"><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">HTML5</span><span class="chip">CSS3</span></div>
+          </div>
+          <div class="card reveal">
+            <h3>Frontend</h3>
+            <div class="chips"><span class="chip">Vue.js</span><span class="chip">Nuxt</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Tailwind CSS</span><span class="chip">jQuery</span></div>
+          </div>
+          <div class="card reveal">
+            <h3>Backend</h3>
+            <div class="chips"><span class="chip">Node.js</span><span class="chip">NestJS</span><span class="chip">Express.js</span><span class="chip">Laravel</span></div>
+          </div>
+          <div class="card reveal">
+            <h3>Databases &amp; Caching</h3>
+            <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">SQLite</span><span class="chip">Redis</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <p class="section-label">// projects</p>
+        <h2>Featured projects</h2>
+        <div class="projects">
+          <a class="card project reveal" href="https://github.com/rikiafilafwork/muhasabah-daily" target="_blank" rel="noopener">
+            <div class="project-top">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </div>
+            <h3>muhasabah-daily</h3>
+            <p>A daily self-reflection (muhasabah) app for building consistent personal habits.</p>
+            <div class="tags"><span class="tag">TypeScript</span></div>
+          </a>
+          <a class="card project reveal" href="https://github.com/rikiafilafwork/vue3-todo-app" target="_blank" rel="noopener">
+            <div class="project-top">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </div>
+            <h3>vue3-todo-app</h3>
+            <p>A todo app built with the Vue 3 Composition API.</p>
+            <div class="tags"><span class="tag">Vue 3</span><span class="tag">Composition API</span></div>
+          </a>
+          <a class="card project reveal" href="https://github.com/rikiafilafwork/pomodoro-timer" target="_blank" rel="noopener">
+            <div class="project-top">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </div>
+            <h3>pomodoro-timer</h3>
+            <p>A Pomodoro focus timer to structure work into focused sessions and breaks.</p>
+            <div class="tags"><span class="tag">JavaScript</span></div>
+          </a>
+        </div>
+        <div class="note reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Most of my professional work (fullstack web apps, event platforms, and admin dashboards with role management) lives in private repositories. I'm happy to walk through it in an interview.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="card contact reveal">
+          <p class="section-label">// contact</p>
+          <h2>Let's build something great together</h2>
+          <p>Have a role or a project in mind? I'd love to hear about it. The fastest way to reach me is by email.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="mailto:rikiafilaf.work@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              rikiafilaf.work@gmail.com
+            </a>
+            <a class="btn btn-ghost" href="https://linkedin.com/in/riki-afila-f-7068631a9" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Riki Afila Firmansyah</span>
+      <div class="socials">
+        <a href="https://github.com/rikiafilafwork" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/riki-afila-f-7068631a9" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://instagram.com/rikiafila" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var sun = document.getElementById("icon-sun");
+      var moon = document.getElementById("icon-moon");
+
+      function stored() { try { return localStorage.getItem("theme"); } catch (e) { return null; } }
+      function save(v) { try { localStorage.setItem("theme", v); } catch (e) {} }
+      function isDark() {
+        var t = root.getAttribute("data-theme");
+        if (t) return t === "dark";
+        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      }
+      function syncIcon() {
+        var dark = isDark();
+        sun.style.display = dark ? "block" : "none";
+        moon.style.display = dark ? "none" : "block";
+      }
+
+      var s = stored();
+      if (s === "dark" || s === "light") root.setAttribute("data-theme", s);
+      syncIcon();
+
+      document.getElementById("theme-toggle").addEventListener("click", function () {
+        var next = isDark() ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        save(next);
+        syncIcon();
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      var items = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        items.forEach(function (el) { io.observe(el); });
+      } else {
+        items.forEach(function (el) { el.classList.add("visible"); });
+      }
+    })();
+  </script>
+</body>
+</html>
